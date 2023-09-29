@@ -1,12 +1,11 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet } from "react-router-dom";
 
 const Root = () => {
   return (
     <>
-    <Ma
-    <Outlet />
+      <Outlet />
     </>
-  )
-}
+  );
+};
 
-export default Root
+export default Root;

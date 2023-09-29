@@ -1,8 +1,12 @@
+import MainHeader from "../layout/MainHeader";
+import classes from './HomaPage.module.css'
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
-  )
-}
+    <main className={classes.main}>
+      <MainHeader />
+    </main>
+  );
+};
 
-export default HomePage
+export default HomePage;
