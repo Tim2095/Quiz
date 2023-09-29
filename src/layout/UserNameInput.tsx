@@ -1,9 +1,9 @@
-
+import classes from './UserNameInput.module.css'
 
 const UserNameInput = () => {
   return (
-    <form>
-      <label htmlFor="text"></label>
+    <form className={classes.form}>
+      <label htmlFor="text">Enter Your Name</label>
       <input type="text" id="text" />
     </form>
   )
