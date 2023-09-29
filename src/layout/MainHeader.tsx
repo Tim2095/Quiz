@@ -1,6 +1,6 @@
 import QuizLogo from '../assets/img/QUIZ.png'
 import Khelo from '../assets/img/Khelo.png'
-import classes from './MainLayout.module.css'
+import classes from './MainHeader.module.css'
 
 const MainHeader = () => {
   return (
