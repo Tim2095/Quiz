@@ -1,0 +1,7 @@
+.main {
+  background: rgba(0, 70, 67, 0.70);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

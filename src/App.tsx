@@ -1,8 +1,10 @@
+import classes from './App.module.css'
+import MainHeader from './layout/MainHeader';
 
 function App() {
   return (
-    <div>
-      <h1>Hello World!</h1>
+    <div className={classes.main}>
+      <MainHeader />
     </div>
   );
 }
