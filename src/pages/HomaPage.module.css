@@ -7,3 +7,11 @@
   display: flex;
   flex-flow: column;
 }
+
+.main div {
+  background-color: red;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-flow: column;
+}
