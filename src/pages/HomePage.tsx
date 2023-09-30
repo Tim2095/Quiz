@@ -5,10 +5,8 @@ import classes from "./HomaPage.module.css";
 const HomePage = () => {
   return (
     <main className={classes.main}>
-      <div>
-        <MainHeader />
-        <UserNameInput />
-      </div>
+      <MainHeader />
+      <UserNameInput />
     </main>
   );
 };

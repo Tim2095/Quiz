@@ -8,10 +8,9 @@
   flex-flow: column;
 }
 
-.main div {
-  background-color: red;
+/* .main div {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-flow: column;
-}
+} */

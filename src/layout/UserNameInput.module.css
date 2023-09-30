@@ -1,4 +1,45 @@
 .form {
   display: flex;
   flex-flow: column;
+  margin-top: 5rem;
+}
+
+.form label {
+  color: #EEEFF2;
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.name-inp {
+  width: 38rem;
+  background-color: transparent;
+  padding: 1.7rem 2rem;
+  border: 1px solid #EEEFF2;
+  border-radius: 20px;
+}
+
+.name-inp:focus {
+  outline: none;
+  color: #E9EAED;
+}
+
+.name-inp::placeholder {
+  color: #E9EAED;
+  font-size: 1.2rem;
+}
+
+.start-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  background: #F8C660;
+  border-radius: 20px;
+  border: none;
+  margin-top: 2rem;
+  color: #fff;
+  font-size: 2.4rem;
+  font-weight: 600;
+  cursor: pointer;
 }
