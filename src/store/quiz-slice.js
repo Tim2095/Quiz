@@ -3,12 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 const quizSlice = createSlice({
   name: 'quiz',
   initialState: {
+    userName: '',
     currentQuestion: 0,
     rightAnswers: 0,
     wrongAnswers: 0
   },
-  reducer: {
-    getQuestionResult(result) {
+  reducers: {
+    getUserName(state, action) {
+      state.userName = action.payload
+      console.log(state.userName)
+    },
+
+    getQuestionResult(state, result) {
 
     }
   }
