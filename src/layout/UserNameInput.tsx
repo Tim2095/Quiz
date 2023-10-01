@@ -3,12 +3,11 @@ import { useNavigate } from 'react-router-dom'
 import { useRef } from 'react'
 import { useDispatch } from 'react-redux'
 import { quizActions } from '../store/quiz-slice'
-const UserNameInput: React.FC<{}> = (props) => {
+const UserNameInput: React.FC = () => {
   const dispatch = useDispatch()
   const userInput = useRef<HTMLInputElement>(null)
 
   const navigate = useNavigate()
-
 
   const handleStartClick = (event: React.FormEvent) => {
     event.preventDefault()
@@ -16,10 +15,6 @@ const UserNameInput: React.FC<{}> = (props) => {
     navigate('/category')
     dispatch(quizActions.getUserName(userName))
   }
-
-
-
-
 
   return (
     <form className={classes.form} onSubmit={handleStartClick}>
