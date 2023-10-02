@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./Category.module.css";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 
 
-const CategoryPage: React.FC = () => {
+const CategoryPage = () => {
   const navigate = useNavigate()  
-  
+  const [category, setCategory] = useState<string>('')
   
   const goBackBtnHandler = () => {
     navigate('../')
+  }
+
+  const addCategoryHandler = (category: string) => {
+    const chosenCategory = category
+    console.log(category)
   }
 
   interface RootState {
@@ -31,7 +36,7 @@ const CategoryPage: React.FC = () => {
         <div className={classes.category}>
           <h3>Choose your category</h3>
           <div className={classes['category-items']}>
-            <button className={classes['category-btn']}>General</button>
+            <button onClick={() => addCategoryHandler('general')} className={classes['category-btn']}>General</button>
             <button className={classes['category-btn']}>Entertainment</button>
             <button className={classes['category-btn']}>Toys games</button>
           </div>
