@@ -11,11 +11,10 @@ const quizSlice = createSlice({
   reducers: {
     getUserName(state, action) {
       state.userName = action.payload
-      console.log(state.userName)
     },
 
     getQuestionResult(state, result) {
-
+      
     }
   }
 })

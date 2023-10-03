@@ -1,0 +1,21 @@
+.category-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 3rem;
+  margin-top: 3rem;
+  gap: 2rem;
+}
+
+.category-items .category-btn {
+  font-size: 2rem;
+  padding: 2rem;
+  border-radius: 20px;
+  background: #abd1c6;
+  text-align: center;
+  color: #004643;
+  cursor: pointer;
+}
+
+.category-items .category-btn:hover {
+  background: #F8C660;
+} 
