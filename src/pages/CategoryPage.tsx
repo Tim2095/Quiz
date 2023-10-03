@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import classes from "./Category.module.css";
 import { useSelector } from "react-redux";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import CategoryItem from "./CategoryItem";
 
 const CategoryPage = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState<string>("");
-  console.log(category)
+  console.log(category);
 
   const goBackBtnHandler = () => {
     navigate("../");
   };
 
-  const [question, setQuestion] = useState<string>('')
+  const [question, setQuestion] = useState<string>("");
 
   useEffect(() => {
     const fetchCategory = async (category: string) => {
@@ -27,15 +27,19 @@ const CategoryPage = () => {
         }
       );
       const categories = await response.json();
+      console.log(categories);
       categories.map((category: any) => {
-        setQuestion(category.question)
-        console.log(question)
-      })
+        setQuestion(category.question);
+        console.log(question);
+      });
     };
-    fetchCategory(category)
-  }, [])
+    if (category) {
+      fetchCategory(category);
+    } else {
+      return
+    }
+  }, [category]);
 
- 
   interface RootState {
     quiz: {
       userName: string;
@@ -45,15 +49,20 @@ const CategoryPage = () => {
   const userName = useSelector((state: RootState) => state.quiz.userName);
 
   const ToggleCategoryVisibility = () => {
-    return <>
-      {category ? <h3>Chosen category is {category}</h3> : <h3>Hello {userName} Choose your Category</h3>}
-    </>
-  }
+    return (
+      <>
+        {category ? (
+          <h3>Chosen category is {category}</h3>
+        ) : (
+          <h3>Hello {userName} Choose your Category</h3>
+        )}
+      </>
+    );
+  };
 
   const checkCat = (cat: string) => {
-    setCategory(cat)
-  }
-  
+    setCategory(cat);
+  };
 
   return (
     <div className={classes["category-main"]}>
@@ -65,7 +74,11 @@ const CategoryPage = () => {
         </div>
         <div className={classes.category}>
           <ToggleCategoryVisibility />
-          {!category ? <CategoryItem selectedCategory={checkCat} /> : <h1>{question}</h1>}
+          {!category ? (
+            <CategoryItem selectedCategory={checkCat} />
+          ) : (
+            <h1>{question}</h1>
+          )}
         </div>
       </div>
     </div>
