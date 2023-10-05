@@ -30,13 +30,12 @@ const CategoryPage = () => {
       console.log(categories);
       categories.map((category: any) => {
         setQuestion(category.question);
-        console.log(question);
       });
     };
     if (category) {
       fetchCategory(category);
     } else {
-      return
+      return;
     }
   }, [category]);
 
@@ -77,7 +76,9 @@ const CategoryPage = () => {
           {!category ? (
             <CategoryItem selectedCategory={checkCat} />
           ) : (
-            <h1>{question}</h1>
+            <>
+              <h1>{question}</h1>
+            </>
           )}
         </div>
       </div>
