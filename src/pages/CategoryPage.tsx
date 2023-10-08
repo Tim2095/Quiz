@@ -28,7 +28,8 @@ const CategoryPage = () => {
       );
       const categories = await response.json();
       console.log(categories);
-      categories.map((category: any) => {
+      categories.map((category: {question: string}) => {
+        console.log(category)
         setQuestion(category.question);
       });
     };
