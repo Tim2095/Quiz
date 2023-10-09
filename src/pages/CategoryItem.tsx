@@ -1,54 +1,50 @@
 import React from "react";
-import classes from './CategoryItem.module.css'
+import classes from "./CategoryItem.module.css";
+import Button from "../ui/Button";
 
-const CategoryItem: React.FC<{selectedCategory: (category: string) => void}> = (props) => {
-  
+const CategoryItem: React.FC<{
+  selectedCategory: (category: string) => void;
+}> = (props) => {
   const addCategoryHandler = (selectedCategory: string) => {
     const chosenCategory = selectedCategory;
-    props.selectedCategory(chosenCategory)
+    props.selectedCategory(chosenCategory);
   };
 
   return (
     <>
       <div className={classes["category-items"]}>
-        <button
+        <Button
+          btnContent="General"
+          className={classes["category-btn"]}
           onClick={() => addCategoryHandler("general")}
+        />
+        <Button
+          btnContent="Entertainment"
           className={classes["category-btn"]}
-        >
-          General
-        </button>
-        <button
           onClick={() => addCategoryHandler("entertainment")}
+        />
+        <Button
+          btnContent="toysgames"
           className={classes["category-btn"]}
-        >
-          Entertainment
-        </button>
-        <button
           onClick={() => addCategoryHandler("toysgames")}
-          className={classes["category-btn"]}
-        >
-          Toys games
-        </button>
+        />
       </div>
       <div className={classes["category-items"]}>
-        <button
+        <Button
+          btnContent="music"
+          className={classes["category-btn"]}
           onClick={() => addCategoryHandler("music")}
+        />
+        <Button
+          btnContent="geography"
           className={classes["category-btn"]}
-        >
-          Music
-        </button>
-        <button
           onClick={() => addCategoryHandler("geography")}
+        />
+        <Button
+          btnContent="Science nature"
           className={classes["category-btn"]}
-        >
-          Geography
-        </button>
-        <button
           onClick={() => addCategoryHandler("sciencenature")}
-          className={classes["category-btn"]}
-        >
-          Science nature
-        </button>
+        />
       </div>
     </>
   );
