@@ -4,6 +4,8 @@ import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { quizActions } from "../store/quiz-slice";
 import Input from "../ui/Input";
+import Button from "../ui/Button";
+
 const UserNameInput: React.FC = () => {
   const dispatch = useDispatch();
   const userInput = useRef<HTMLInputElement>(null);
@@ -32,6 +34,7 @@ const UserNameInput: React.FC = () => {
           className: classes["name-inp"],
         }}
       />
+      <Button btnContent="Start" onClick={handleStartClick} className={classes['start-btn']} />
     </form>
   );
 };
