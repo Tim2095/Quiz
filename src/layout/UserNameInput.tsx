@@ -27,6 +27,7 @@ const UserNameInput: React.FC = () => {
     // </form>
     <form className={classes.form}>
       <Input label="Enter Your Name"
+        ref={userInput}
         input={{
           type: "text",
           id: "name",

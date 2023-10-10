@@ -9,6 +9,7 @@ interface InputProps {
     placeholder: string;
     className?: string;
   };
+  ref?: React.Ref<HTMLInputElement>
 }
 
 const Input: React.FC<InputProps> = forwardRef<HTMLInputElement, InputProps>(
