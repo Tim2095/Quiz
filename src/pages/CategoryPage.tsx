@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
-import classes from "./Category.module.css";
+import React, { useEffect, useState, useRef } from "react";
+import classes from "./CategoryPage.module.css";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CategoryItem from "./CategoryItem";
+import Input from "../ui/Input";
+import Button from "../ui/Button";
 
 const CategoryPage = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState<string>("");
-  console.log(category);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const userAnswer = useRef<HTMLInputElement>(null)
 
   const goBackBtnHandler = () => {
     navigate("../");
@@ -17,6 +20,7 @@ const CategoryPage = () => {
 
   useEffect(() => {
     const fetchCategory = async (category: string) => {
+      setIsLoading(true);
       const response = await fetch(
         `https://api.api-ninjas.com/v1/trivia?category=${category}`,
         {
@@ -27,11 +31,11 @@ const CategoryPage = () => {
         }
       );
       const categories = await response.json();
-      console.log(categories);
-      categories.map((category: {question: string}) => {
-        console.log(category)
+
+      categories.map((category: { question: string }) => {
         setQuestion(category.question);
       });
+      setIsLoading(false);
     };
     if (category) {
       fetchCategory(category);
@@ -51,10 +55,10 @@ const CategoryPage = () => {
   const ToggleCategoryVisibility = () => {
     return (
       <>
-        {category ? (
-          <h3>Chosen category is {category}</h3>
-        ) : (
+        {!category ? (
           <h3>Hello {userName} Choose your Category</h3>
+        ) : (
+          <h3>Chosen category is {category}</h3>
         )}
       </>
     );
@@ -63,6 +67,11 @@ const CategoryPage = () => {
   const checkCat = (cat: string) => {
     setCategory(cat);
   };
+
+  const submitAnswerHandler = (event: React.FormEvent) => {
+    event.preventDefault()
+    console.log(userAnswer.current?.value)
+  }
 
   return (
     <div className={classes["category-main"]}>
@@ -78,7 +87,21 @@ const CategoryPage = () => {
             <CategoryItem selectedCategory={checkCat} />
           ) : (
             <>
-              <h1>{question}</h1>
+              <div className={classes["question-cnt"]}>
+                <h2 className={classes.question}>{question}</h2>
+              </div>
+              <form onSubmit={submitAnswerHandler} className={classes.answer}>
+                <Input
+                  ref={userAnswer}
+                  input={{
+                    type: "text",
+                    id: "answer",
+                    placeholder: "Type your answer",
+                    className: classes["answer-inp"],
+                  }}
+                />
+                <Button btnContent="Submit" className={classes['answer-btn']} />
+              </form>
             </>
           )}
         </div>

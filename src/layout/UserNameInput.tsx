@@ -20,11 +20,6 @@ const UserNameInput: React.FC = () => {
   };
 
   return (
-    // <form className={classes.form} onSubmit={handleStartClick}>
-    //   <label htmlFor="text">Enter Your Name</label>
-    //   <input type="text" ref={userInput} id="text" placeholder='Your Name' className={classes['name-inp']}  />
-    //   <button className={classes['start-btn']}>Start</button>
-    // </form>
     <form className={classes.form}>
       <Input label="Enter Your Name"
         ref={userInput}

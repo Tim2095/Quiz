@@ -2,7 +2,7 @@ import React, { forwardRef } from "react";
 
 interface InputProps {
   className?: string;
-  label: string;
+  label?: string;
   input: {
     type: string;
     id: string;
