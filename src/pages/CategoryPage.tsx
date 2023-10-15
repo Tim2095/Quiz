@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import CategoryItem from "./CategoryItem";
 import Input from "../ui/Input";
 import Button from "../ui/Button";
+import Spinner from "../ui/Spinner";
 
 const CategoryPage = () => {
   const navigate = useNavigate();
@@ -68,9 +69,9 @@ const CategoryPage = () => {
     setCategory(cat);
   };
 
-  const submitAnswerHandler = (event: React.FormEvent) => {
+  const submitAnswerHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log(userAnswer.current?.value)
+    
   }
 
   return (
@@ -88,7 +89,7 @@ const CategoryPage = () => {
           ) : (
             <>
               <div className={classes["question-cnt"]}>
-                <h2 className={classes.question}>{question}</h2>
+                {isLoading ? <Spinner /> : <h2 className={classes.question}>{question}</h2>}
               </div>
               <form onSubmit={submitAnswerHandler} className={classes.answer}>
                 <Input
