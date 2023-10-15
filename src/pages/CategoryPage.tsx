@@ -41,7 +41,6 @@ const CategoryPage = () => {
         }
       );
       const categories = await response.json();
-
       setQuestionData(categories);
       categories.map((category: { question: string }) => {
         setQuestion(category.question);

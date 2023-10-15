@@ -14,7 +14,11 @@ const quizSlice = createSlice({
     },
 
     getQuestionData(state, action) {
-      console.log(action.payload)
+      const questionData = action.payload
+      state.currentQuestion++
+      const userAnswer = questionData.userAnswer.toLowerCase().replaceAll(' ', '')
+      const rightAnswer = questionData.rightAnswer.toLowerCase().replaceAll(' ', '')
+      console.log(state.currentQuestion)
     }
   }
 })
