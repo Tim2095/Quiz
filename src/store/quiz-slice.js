@@ -13,8 +13,8 @@ const quizSlice = createSlice({
       state.userName = action.payload
     },
 
-    getQuestionResult(state, result) {
-      
+    getQuestionData(state, action) {
+      console.log(action.payload)
     }
   }
 })

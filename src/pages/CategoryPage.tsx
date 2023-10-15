@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import classes from "./CategoryPage.module.css";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { quizActions } from "../store/quiz-slice";
 import { useNavigate } from "react-router-dom";
 import CategoryItem from "./CategoryItem";
 import Input from "../ui/Input";
@@ -8,10 +9,18 @@ import Button from "../ui/Button";
 import Spinner from "../ui/Spinner";
 
 const CategoryPage = () => {
+
+  const dispatch = useDispatch()
+
   const navigate = useNavigate();
   const [category, setCategory] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const userAnswer = useRef<HTMLInputElement>(null)
+  const [questionData, setQuestionData] = useState<{
+    question: string,
+    answer: string;
+  }[]>([]);
+
+  const userAnswer = useRef<HTMLInputElement>(null);
 
   const goBackBtnHandler = () => {
     navigate("../");
@@ -33,6 +42,7 @@ const CategoryPage = () => {
       );
       const categories = await response.json();
 
+      setQuestionData(categories);
       categories.map((category: { question: string }) => {
         setQuestion(category.question);
       });
@@ -68,11 +78,21 @@ const CategoryPage = () => {
   const checkCat = (cat: string) => {
     setCategory(cat);
   };
-
+  
   const submitAnswerHandler = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    
-  }
+    event.preventDefault();
+    let questionAnswer = {}; // You can define the structure of this object as needed.
+    questionData.map(qus => {
+      questionAnswer = {
+        question: qus.question,
+        rightAnswer: qus.answer,
+        userAnswer: userAnswer.current?.value
+      }
+    })
+
+    dispatch(quizActions.getQuestionData(questionAnswer))
+    setCategory('')
+  };
 
   return (
     <div className={classes["category-main"]}>
@@ -89,7 +109,11 @@ const CategoryPage = () => {
           ) : (
             <>
               <div className={classes["question-cnt"]}>
-                {isLoading ? <Spinner /> : <h2 className={classes.question}>{question}</h2>}
+                {isLoading ? (
+                  <Spinner />
+                ) : (
+                  <h2 className={classes.question}>{question}</h2>
+                )}
               </div>
               <form onSubmit={submitAnswerHandler} className={classes.answer}>
                 <Input
@@ -101,7 +125,7 @@ const CategoryPage = () => {
                     className: classes["answer-inp"],
                   }}
                 />
-                <Button btnContent="Submit" className={classes['answer-btn']} />
+                <Button btnContent="Submit" className={classes["answer-btn"]} />
               </form>
             </>
           )}
