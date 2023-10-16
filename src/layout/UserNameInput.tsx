@@ -9,9 +9,8 @@ import Button from "../ui/Button";
 const UserNameInput: React.FC = () => {
   const dispatch = useDispatch();
   const userInput = useRef<HTMLInputElement>(null);
-
   const navigate = useNavigate();
-
+  
   const handleStartClick = (event: React.FormEvent) => {
     event.preventDefault();
     const userName = userInput.current?.value;

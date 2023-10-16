@@ -15,6 +15,7 @@ const quizSlice = createSlice({
 
     getQuestionData(state, action) {
       const questionData = action.payload
+      console.log(questionData)
       state.currentQuestion++
       const userAnswer = questionData.userAnswer.toLowerCase().replaceAll(' ', '')
       const rightAnswer = questionData.rightAnswer.toLowerCase().replaceAll(' ', '')

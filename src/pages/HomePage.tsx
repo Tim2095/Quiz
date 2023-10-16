@@ -11,7 +11,6 @@ interface QUIZ {
 
 const HomePage = () => {
   const quizUserName = useSelector((state: QUIZ) => state.quiz.userName)
-  console.log(quizUserName)
   return (
     <main className={classes.main}>
       <MainHeader />

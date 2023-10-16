@@ -8,6 +8,7 @@ interface InputProps {
     id: string;
     placeholder: string;
     className?: string;
+    name?: string;
   };
   ref?: React.Ref<HTMLInputElement>
 }

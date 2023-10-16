@@ -9,18 +9,19 @@ import Button from "../ui/Button";
 import Spinner from "../ui/Spinner";
 
 const CategoryPage = () => {
-
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
   const [category, setCategory] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [questionData, setQuestionData] = useState<{
-    question: string,
-    answer: string;
-  }[]>([]);
+  const [questionData, setQuestionData] = useState<
+    {
+      question: string;
+      answer: string;
+    }[]
+  >([]);
 
-  const userAnswer = useRef<HTMLInputElement>(null);
+  const [userAnswer, setUserAnswer] = useState<string>("");
 
   const goBackBtnHandler = () => {
     navigate("../");
@@ -52,7 +53,7 @@ const CategoryPage = () => {
     } else {
       return;
     }
-  }, [category]);
+  }, [category, userAnswer]);
 
   interface RootState {
     quiz: {
@@ -77,20 +78,30 @@ const CategoryPage = () => {
   const checkCat = (cat: string) => {
     setCategory(cat);
   };
-  
+
   const submitAnswerHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const form = event.target as HTMLFormElement;
+    const userInput = form.elements.namedItem("user-inp") as HTMLInputElement;
+
+    if (userAnswer === userInput.value) {
+      setUserAnswer("");
+    } else {
+      setUserAnswer(userInput.value);
+    }
+
     let questionAnswer = {}; // You can define the structure of this object as needed.
-    questionData.map(qus => {
+    questionData.map((qus) => {
       questionAnswer = {
         question: qus.question,
         rightAnswer: qus.answer,
-        userAnswer: userAnswer.current?.value
-      }
-    })
+        userAnswer: userInput.value,
+      };
+    });
 
-    dispatch(quizActions.getQuestionData(questionAnswer))
-    setCategory('')
+    dispatch(quizActions.getQuestionData(questionAnswer));
+    // setCategory('')
+    userInput.value = "";
   };
 
   return (
@@ -116,12 +127,12 @@ const CategoryPage = () => {
               </div>
               <form onSubmit={submitAnswerHandler} className={classes.answer}>
                 <Input
-                  ref={userAnswer}
                   input={{
                     type: "text",
                     id: "answer",
                     placeholder: "Type your answer",
                     className: classes["answer-inp"],
+                    name: "user-inp",
                   }}
                 />
                 <Button btnContent="Submit" className={classes["answer-btn"]} />
