@@ -43,8 +43,8 @@
 }
 
 .category-items .category-btn:hover {
-  background: #F8C660;
-} 
+  background: #f8c660;
+}
 
 .back-btn {
   border: none;
@@ -78,6 +78,12 @@
   margin-bottom: 2rem;
 }
 
+.answer-inp.invalid {
+  border-color: red;
+  outline: none;
+}
+
+
 .answer-btn {
   width: 80%;
   padding: 1rem;
@@ -85,5 +91,4 @@
   background-color: #004643;
   color: #fff;
   border: none;
-  
 }

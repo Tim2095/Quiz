@@ -14,6 +14,7 @@ const CategoryPage = () => {
   const navigate = useNavigate();
   const [category, setCategory] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [answerIsValid, setAnswerIsValid] = useState<boolean>(true);
   const [questionData, setQuestionData] = useState<
     {
       question: string;
@@ -31,22 +32,30 @@ const CategoryPage = () => {
 
   useEffect(() => {
     const fetchCategory = async (category: string) => {
-      setIsLoading(true);
-      const response = await fetch(
-        `https://api.api-ninjas.com/v1/trivia?category=${category}`,
-        {
-          method: "GET",
-          headers: {
-            "X-Api-Key": "3wwFSMii/FYDHZNimyzw1A==uILn0RI9vfPalTwD",
-          },
+      try {
+        setIsLoading(true);
+        const response = await fetch(
+          `https://api.api-ninjas.com/v1/trivia?category=${category}`,
+          {
+            method: "GET",
+            headers: {
+              "X-Api-Key": "3wwFSMii/FYDHZNimyzw1A==uILn0RI9vfPalTwD",
+            },
+          }
+        );
+        if (!response.ok) {
+          throw new Error("Error! Status: " + response.status);
         }
-      );
-      const categories = await response.json();
-      setQuestionData(categories);
-      categories.map((category: { question: string }) => {
-        setQuestion(category.question);
-      });
-      setIsLoading(false);
+        const categories = await response.json();
+        setQuestionData(categories);
+        categories.map((category: { question: string }) => {
+          setQuestion(category.question);
+        });
+        setIsLoading(false);
+      } catch (Err) {
+        console.log("Error " + Err);
+        throw Err;
+      }
     };
     if (category) {
       fetchCategory(category);
@@ -75,6 +84,7 @@ const CategoryPage = () => {
     );
   };
 
+  // Here we are getting chosen category and settin it up to state for the fetch request
   const checkCat = (cat: string) => {
     setCategory(cat);
   };
@@ -83,6 +93,15 @@ const CategoryPage = () => {
     event.preventDefault();
     const form = event.target as HTMLFormElement;
     const userInput = form.elements.namedItem("user-inp") as HTMLInputElement;
+
+    if (userInput.value === "") {
+      setAnswerIsValid(false);
+      return;
+    } else {
+      setAnswerIsValid(true);
+    }
+
+    console.log(answerIsValid);
 
     if (userAnswer === userInput.value) {
       setUserAnswer("");
@@ -131,7 +150,9 @@ const CategoryPage = () => {
                     type: "text",
                     id: "answer",
                     placeholder: "Type your answer",
-                    className: classes["answer-inp"],
+                    className: `${classes["answer-inp"]} ${
+                      !answerIsValid ? classes.invalid : ""
+                    }`,
                     name: "user-inp",
                   }}
                 />

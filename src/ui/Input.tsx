@@ -9,6 +9,7 @@ interface InputProps {
     placeholder: string;
     className?: string;
     name?: string;
+    required?: boolean
   };
   ref?: React.Ref<HTMLInputElement>
 }
