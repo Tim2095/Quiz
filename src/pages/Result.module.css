@@ -1,0 +1,57 @@
+.result-section {
+  background: #eff0f3;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-heading {
+  padding: 3rem;
+}
+
+.result-section-cnt {
+  background: #fff;
+  padding: 4.5rem;
+  width: 50rem;
+}
+
+.result {
+  text-align: center;
+}
+
+.result-cnt {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.play-btn-cnt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.btn-play-again {
+  background-color: #004643;
+  color: #fff;
+  border: none;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+.right, .wrong {
+  font-size: 2rem;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.right {
+  color: forestgreen;
+}
+
+.wrong {
+  color: red;
+}

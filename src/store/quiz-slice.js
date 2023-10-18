@@ -4,7 +4,7 @@ const quizSlice = createSlice({
   name: 'quiz',
   initialState: {
     userName: '',
-    currentQuestion: 0,
+    currentQuestion: 1,
     rightAnswers: 0,
     wrongAnswers: 0
   },
@@ -18,8 +18,12 @@ const quizSlice = createSlice({
       state.currentQuestion++
       const userAnswer = questionData.userAnswer.toLowerCase().replaceAll(' ', '')
       const rightAnswer = questionData.rightAnswer.toLowerCase().replaceAll(' ', '')
-      
-    }
+      if(userAnswer === rightAnswer) {
+        state.rightAnswers++
+      } else {
+        state.wrongAnswers++
+      }
+    } 
   }
 })
 

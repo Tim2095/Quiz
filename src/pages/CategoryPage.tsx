@@ -17,6 +17,7 @@ const CategoryPage = () => {
   }
 
   const questionCounter = useSelector((state: RootState) => state.quiz.currentQuestion );
+  
 
   const userName = useSelector((state: RootState) => state.quiz.userName);
 
@@ -42,6 +43,8 @@ const CategoryPage = () => {
   const [question, setQuestion] = useState<string>("");
 
   useEffect(() => {
+    if(questionCounter > 3) navigate('/result')
+
     const fetchCategory = async (category: string) => {
       try {
         setIsLoading(true);
@@ -84,7 +87,8 @@ const CategoryPage = () => {
         ) : (
           <div>
             <h3 className={classes.counter}>{questionCounter}/3</h3>
-            <h3>Chosen category is {category}</h3>
+
+            {questionCounter <= 3 ? <h3>Chosen category is {category}</h3> : <h3>Result: </h3>}          
           </div>
         )}
       </>
@@ -126,6 +130,7 @@ const CategoryPage = () => {
     dispatch(quizActions.getQuestionData(questionAnswer));
     // setCategory('')
     userInput.value = "";
+
   };
 
   return (
@@ -142,13 +147,13 @@ const CategoryPage = () => {
             <CategoryItem selectedCategory={checkCat} />
           ) : (
             <>
-              <div className={classes["question-cnt"]}>
+              {questionCounter <= 3 && <div className={classes["question-cnt"]}>
                 {isLoading ? (
                   <Spinner />
                 ) : (
                   <h2 className={classes.question}>{question}</h2>
                 )}
-              </div>
+              </div>}
               <form onSubmit={submitAnswerHandler} className={classes.answer}>
                 <Input
                   input={{

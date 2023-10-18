@@ -1,5 +1,5 @@
 import MainHeader from "../layout/MainHeader";
-import UserNameInput from "../layout/UserNameInput";
+import UserNameInput from "./UserNameInput";
 import classes from "./HomaPage.module.css";
 
 const HomePage = () => {
