@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./CategoryPage.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { quizActions } from "../store/quiz-slice";
@@ -9,6 +9,17 @@ import Button from "../ui/Button";
 import Spinner from "../ui/Spinner";
 
 const CategoryPage = () => {
+  interface RootState {
+    quiz: {
+      userName: string;
+      currentQuestion: number;
+    };
+  }
+
+  const questionCounter = useSelector((state: RootState) => state.quiz.currentQuestion );
+
+  const userName = useSelector((state: RootState) => state.quiz.userName);
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -47,6 +58,7 @@ const CategoryPage = () => {
           throw new Error("Error! Status: " + response.status);
         }
         const categories = await response.json();
+        console.log(categories);
         setQuestionData(categories);
         categories.map((category: { question: string }) => {
           setQuestion(category.question);
@@ -64,21 +76,16 @@ const CategoryPage = () => {
     }
   }, [category, userAnswer]);
 
-  interface RootState {
-    quiz: {
-      userName: string;
-    };
-  }
-
-  const userName = useSelector((state: RootState) => state.quiz.userName);
-
   const ToggleCategoryVisibility = () => {
     return (
       <>
         {!category ? (
           <h3>Hello {userName} Choose your Category</h3>
         ) : (
-          <h3>Chosen category is {category}</h3>
+          <div>
+            <h3 className={classes.counter}>{questionCounter}/3</h3>
+            <h3>Chosen category is {category}</h3>
+          </div>
         )}
       </>
     );
@@ -100,8 +107,6 @@ const CategoryPage = () => {
     } else {
       setAnswerIsValid(true);
     }
-
-    console.log(answerIsValid);
 
     if (userAnswer === userInput.value) {
       setUserAnswer("");
