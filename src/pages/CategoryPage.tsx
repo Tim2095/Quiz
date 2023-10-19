@@ -65,6 +65,7 @@ const CategoryPage = () => {
         setQuestionData(categories);
         categories.map((category: { question: string }) => {
           setQuestion(category.question);
+          return undefined
         });
         setIsLoading(false);
       } catch (Err) {
