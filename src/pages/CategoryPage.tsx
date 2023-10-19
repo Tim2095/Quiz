@@ -89,14 +89,13 @@ const CategoryPage = () => {
           <div>
             <h3 className={classes.counter}>{questionCounter}/3</h3>
 
-            {questionCounter <= 3 ? <h3>Chosen category is {category}</h3> : <h3>Result: </h3>}          
+            {questionCounter <= 3 ? <h3 className={classes['category-heading']}>Chosen category is {category}</h3> : <h3>Result: </h3>}          
           </div>
         )}
       </>
     );
   };
 
-  // Here we are getting chosen category and settin it up to state for the fetch request
   const checkCat = (cat: string) => {
     setCategory(cat);
   };
