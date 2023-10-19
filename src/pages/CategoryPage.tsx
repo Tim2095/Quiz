@@ -77,7 +77,7 @@ const CategoryPage = () => {
     } else {
       return;
     }
-  }, [category, userAnswer]);
+  }, [category, userAnswer, navigate, questionCounter]);
 
   const ToggleCategoryVisibility = () => {
     return (
