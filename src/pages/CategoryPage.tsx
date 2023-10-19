@@ -137,7 +137,7 @@ const CategoryPage = () => {
   return (
     <div className={classes["category-main"]}>
       <div className={classes["category-cnt"]}>
-        <div>
+        <div className={classes['back-btn-cnt']}>
           <button className={classes["back-btn"]} onClick={goBackBtnHandler}>
             Go back
           </button>
