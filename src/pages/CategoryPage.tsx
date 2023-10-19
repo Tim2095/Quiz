@@ -126,6 +126,7 @@ const CategoryPage = () => {
         rightAnswer: qus.answer,
         userAnswer: userInput.value,
       };
+      return undefined
     });
 
     dispatch(quizActions.getQuestionData(questionAnswer));
