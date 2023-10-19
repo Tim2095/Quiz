@@ -4,14 +4,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  display: flex;
   flex-flow: column;
 }
 
 @media screen and (max-width: 768px) {
-
 .main {
-  height: 100%;
+  overflow: hidden;
 }
-
 }
