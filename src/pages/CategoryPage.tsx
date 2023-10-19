@@ -132,7 +132,6 @@ const CategoryPage = () => {
     dispatch(quizActions.getQuestionData(questionAnswer));
     // setCategory('')
     userInput.value = "";
-
   };
 
   return (
