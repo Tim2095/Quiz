@@ -84,7 +84,7 @@ const CategoryPage = () => {
     return (
       <>
         {!category ? (
-          <h3>Hello {userName} Choose your Category</h3>
+          <h3 className={classes['category-heading']}>Hello {userName} Choose your Category</h3>
         ) : (
           <div>
             <h3 className={classes.counter}>{questionCounter}/3</h3>

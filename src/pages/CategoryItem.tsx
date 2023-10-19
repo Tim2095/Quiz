@@ -24,26 +24,26 @@ const CategoryItem: React.FC<{
           onClick={() => addCategoryHandler("entertainment")}
         />
         <Button
-          btnContent="toysgames"
+          btnContent="Toys games"
           className={classes["category-btn"]}
           onClick={() => addCategoryHandler("toysgames")}
         />
       </div>
       <div className={classes["category-items"]}>
         <Button
-          btnContent="music"
+          btnContent="Music"
           className={classes["category-btn"]}
           onClick={() => addCategoryHandler("music")}
         />
         <Button
-          btnContent="geography"
+          btnContent="Geography"
           className={classes["category-btn"]}
           onClick={() => addCategoryHandler("geography")}
         />
         <Button
-          btnContent="Science nature"
+          btnContent="Language"
           className={classes["category-btn"]}
-          onClick={() => addCategoryHandler("sciencenature")}
+          onClick={() => addCategoryHandler("language")}
         />
       </div>
     </>
