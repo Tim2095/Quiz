@@ -95,3 +95,20 @@
 .counter {
   padding: 1rem;
 }
+
+
+@media screen and (max-width: 768px)  {
+
+.category {
+  height: 90vh;
+  width: 100%;
+  background: none;
+  box-shadow: none;
+}
+
+.category-main {
+  padding: 2rem;
+  overflow: scroll;
+}
+
+}

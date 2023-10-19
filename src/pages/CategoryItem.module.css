@@ -19,3 +19,13 @@
 .category-items .category-btn:hover {
   background: #F8C660;
 } 
+
+@media screen and (max-width: 768px) {
+
+.category-items {
+  grid-template-columns: 1fr;
+  padding-bottom: 2rem;
+}
+
+}
+
